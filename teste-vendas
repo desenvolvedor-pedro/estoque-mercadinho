@@ -1,0 +1,33 @@
+import java.util.ArrayList;
+import java.util.List;
+
+class Vendas {
+    List<Produto> produtosVendidos = new ArrayList<>();
+    Estoque estoque;
+
+    Vendas(Estoque estoque) {
+        this.estoque = estoque;
+    }
+
+    // Método para vender um produto baseado no código do produto
+    void venderProduto(int codigo) {
+        for (Produto produto : estoque.armazemDeProdutos) {
+            if (produto.codigo == codigo && produto.quantidade > 0) {
+                produtosVendidos.add(produto);
+                produto.quantidade--;
+                estoque.quantidade--;
+                System.out.println("Produto vendido: " + produto.nome);
+                return;
+            }
+        }
+        System.out.println("Produto não disponível para venda.");
+    }
+
+    // Método para imprimir todos os produtos vendidos
+    void imprimirProdutosVendidos() {
+        System.out.println("\n\n\nRelatório dos produtos vendidos:\n");
+        for (Produto produto : produtosVendidos) {
+            System.out.println(produto.listaImpressaoProduto() + "\n\n");
+        }
+    }
+}
