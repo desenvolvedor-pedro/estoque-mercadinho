@@ -1,10 +1,10 @@
 //Organização de datas.
 class Data {
-    int dia;
-    int mes;
-    int ano;
+    String dia;
+    String mes;
+    String ano;
 
-    String formatado (){
+    public String formatado (){
         return  this.dia + "/" + this.mes + "/" + this.ano;
 
     }
