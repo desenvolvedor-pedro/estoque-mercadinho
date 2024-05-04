@@ -24,16 +24,12 @@ public class ProdutoTableModel extends AbstractTableModel {
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         Produto produto = produtos.get(rowIndex);
-        switch (columnIndex) {
-            case 0:
-                return produto.getNome();
-            case 1:
-                return produto.getPreco();
-            case 2:
-                return produto.getQuantidade();
-            default:
-                return null;
-        }
+        return switch (columnIndex) {
+            case 0 -> produto.getNome();
+            case 1 -> produto.getPreco();
+            case 2 -> produto.getQuantidade();
+            default -> null;
+        };
     }
 
     @Override

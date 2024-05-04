@@ -30,42 +30,42 @@ public class Main extends javax.swing.JFrame {
         UIManager.put("OptionPane.noButtonText", "Não");
     }
 
-    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
+        labelLogo = new javax.swing.JLabel();
+        mainMenuBar = new javax.swing.JMenuBar();
+        pdvMenu = new javax.swing.JMenu();
+        estoqueMenu = new javax.swing.JMenu();
+        relatoriosMenu = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("SGM");
+        setResizable(false);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setText("SGM");
+        labelLogo.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        labelLogo.setText("SGM");
 
-        jMenu2.setText("Ponto de Venda");
-        jMenu2.addMouseListener(new java.awt.event.MouseAdapter() {
+        pdvMenu.setText("Ponto de Venda");
+        pdvMenu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu2MouseClicked(evt);
+                pdvMenuMouseClicked(evt);
             }
         });
-        jMenuBar1.add(jMenu2);
+        mainMenuBar.add(pdvMenu);
 
-        jMenu1.setText("Estoque");
-        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
+        estoqueMenu.setText("Estoque");
+        estoqueMenu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu1MouseClicked(evt);
+                estoqueMenuMouseClicked(evt);
             }
         });
-        jMenuBar1.add(jMenu1);
+        mainMenuBar.add(estoqueMenu);
 
-        jMenu3.setText("Relatórios");
-        jMenuBar1.add(jMenu3);
+        relatoriosMenu.setText("Relatórios");
+        mainMenuBar.add(relatoriosMenu);
 
-        setJMenuBar(jMenuBar1);
+        setJMenuBar(mainMenuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -73,29 +73,29 @@ public class Main extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(163, 163, 163)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(labelLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(164, 164, 164))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(120, 120, 120)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(labelLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(125, 125, 125))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
+    private void pdvMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pdvMenuMouseClicked
         PDV PDV = new PDV();
         PDV.setVisible(true);
-    }//GEN-LAST:event_jMenu2MouseClicked
+    }//GEN-LAST:event_pdvMenuMouseClicked
 
-    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
+    private void estoqueMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_estoqueMenuMouseClicked
         Estoque Estoque = new Estoque();
         Estoque.setVisible(true);
-    }//GEN-LAST:event_jMenu1MouseClicked
+    }//GEN-LAST:event_estoqueMenuMouseClicked
 
     public static void main(String args[]) {
     try {
@@ -105,28 +105,20 @@ public class Main extends javax.swing.JFrame {
                 break;
             }
         }
-    } catch (ClassNotFoundException ex) {
-        java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    } catch (InstantiationException ex) {
-        java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    } catch (IllegalAccessException ex) {
-        java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+    } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
         java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     }
 
-    java.awt.EventQueue.invokeLater(new Runnable() {
-        public void run() {
-            new Main().setVisible(true);
-        }
+    java.awt.EventQueue.invokeLater(() -> {
+        new Main().setVisible(true);
     });
 }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenu estoqueMenu;
+    private javax.swing.JLabel labelLogo;
+    private javax.swing.JMenuBar mainMenuBar;
+    private javax.swing.JMenu pdvMenu;
+    private javax.swing.JMenu relatoriosMenu;
     // End of variables declaration//GEN-END:variables
 }
