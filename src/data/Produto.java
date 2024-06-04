@@ -2,14 +2,25 @@ package data;
 
 public class Produto {
 
+    private int codigo;
     private String nome;
-    private double preco;
     private int quantidade;
+    private double preco;
 
-    public Produto(String nome, double preco, int quantidade) {
+    public Produto(int codigo, String nome, int quantidade, double preco) {
+        this.codigo = codigo;
         this.nome = nome;
-        this.preco = preco;
         this.quantidade = quantidade;
+        this.preco = preco;
+
+    }
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
     }
 
     public String getNome() {

@@ -1,0 +1,106 @@
+@startuml SGM
+
+package "data" {
+
+  class "HistoricoDAO" {
+    -static HistoricoDAO instance
+    -Connection conn
+    -HistoricoDAO()
+    +static getInstance(): HistoricoDAO
+    +getVendasDiarias(): List<Venda>
+    -parseItems(String): List<Produto>
+    +getTotalVendasDiarias(): double
+    +getTotalVendasMensais(): double
+    +getVendasMensais(): List<Venda>
+  }
+  note right of HistoricoDAO
+    Classe DAO Singleton para recuperar dados de histórico de vendas.
+  end note
+
+  class "Produto" {
+    -int codigo
+    -String nome
+    -int quantidade
+    -double preco
+    +Produto(int, String, int, double)
+    +getCodigo(): int
+    +setCodigo(int): void
+    +getNome(): String
+    +setNome(String): void
+    +getPreco(): double
+    +setPreco(double): void
+    +getQuantidade(): int
+    +setQuantidade(int): void
+    +toString(): String
+  }
+  note right of Produto
+    Representa um produto no sistema.
+  end note
+
+  class "ProdutoDAO" {
+    -static ProdutoDAO instance
+    -Connection conn
+    -ProdutoDAO()
+    +static getInstance(): ProdutoDAO
+    +obterProdutos(): List<Produto>
+    +produtoExiste(int): boolean
+    +adicionarProduto(Produto): void
+    +deletarProduto(int): void
+    +atualizarProduto(Produto): void
+  }
+  note right of ProdutoDAO
+    Classe DAO Singleton para gerenciar dados de produto.
+  end note
+
+  class "ModeloTabelaProduto" {
+    -List<Produto> produtos
+    -String[] colunas
+    +ModeloTabelaProduto(List<Produto>)
+    +getContagemDeLinhas(): int
+    +getContagemDeColunast(): int
+    +getValorEm(int, int): Object
+    +getNomeDaColuna(int): String
+    +addProduto(Produto): void
+    +updateProdutos(): void
+  }
+  note right of ModeloTabelaProduto
+    Representa os dados de um conjunto de produtos em uma tabela.
+  end note
+
+  class "Venda" {
+    -List<Produto> produtos
+    -double valorTotal
+    -Timestamp dataVenda
+    +getProdutos(): List<Produto>
+    +setProdutos(List<Produto>): void
+    +getValorTotal(): double
+    +setValorTotal(double): void
+    +getDataVenda(): Timestamp
+    +setDataVenda(Timestamp): void
+    +getItems(): String
+  }
+  note right of Venda
+    Representa uma venda no sistema.
+  end note
+
+  class "VendaDAO" {
+    -static VendaDAO instance
+    -Connection conn
+    -VendaDAO()
+    +static getInstance(): VendaDAO
+    +salvarVenda(Venda): void
+  }
+  note right of VendaDAO
+    Classe DAO Singleton para salvar dados de venda.
+  end note
+
+  Produto "1" -- "many" Venda : contém
+  ProdutoDAO "1" -- "many" Produto : gerencia
+  VendaDAO "1" -- "many" Venda : gerencia
+  HistoricoDAO "1" -- "many" Venda : recupera
+  HistoricoDAO "1" -- "many" Produto : analisa
+  ModeloTabelaProduto "1" -- "many" Produto : exibe
+
+}
+
+@enduml

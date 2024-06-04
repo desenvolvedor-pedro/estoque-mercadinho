@@ -2,6 +2,8 @@ package interfaces;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
@@ -10,6 +12,9 @@ public class Main extends javax.swing.JFrame {
     public Main() {
         initComponents();
         setLocationRelativeTo(null);
+
+        ImageIcon icon = new ImageIcon("src/img/icon.png");
+        this.setIconImage(icon.getImage());
         
         this.addWindowListener(new WindowAdapter() {
             @Override
@@ -63,6 +68,11 @@ public class Main extends javax.swing.JFrame {
         mainMenuBar.add(estoqueMenu);
 
         relatoriosMenu.setText("Relatórios");
+        relatoriosMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                relatoriosMenuMouseClicked(evt);
+            }
+        });
         mainMenuBar.add(relatoriosMenu);
 
         setJMenuBar(mainMenuBar);
@@ -71,17 +81,17 @@ public class Main extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(163, 163, 163)
-                .addComponent(labelLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(164, 164, 164))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(420, 420, 420)
+                .addComponent(labelLogo)
+                .addGap(420, 420, 420))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(120, 120, 120)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(315, 315, 315)
                 .addComponent(labelLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(125, 125, 125))
+                .addGap(315, 315, 315))
         );
 
         pack();
@@ -96,6 +106,11 @@ public class Main extends javax.swing.JFrame {
         Estoque Estoque = new Estoque();
         Estoque.setVisible(true);
     }//GEN-LAST:event_estoqueMenuMouseClicked
+
+    private void relatoriosMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_relatoriosMenuMouseClicked
+        Relatorios Relatorios = new Relatorios();
+        Relatorios.setVisible(true);
+    }//GEN-LAST:event_relatoriosMenuMouseClicked
 
     public static void main(String args[]) {
     try {

@@ -1,6 +1,8 @@
 package interfaces;
 
 import data.ProdutoDAO;
+import data.Venda;
+import data.VendaDAO;
 import data.Produto;
 
 import java.util.ArrayList;
@@ -8,9 +10,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.swing.Box;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -21,7 +23,9 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.plaf.basic.BasicComboBoxRenderer;
+
 import java.awt.Component;
+import java.text.DecimalFormat;
 import java.awt.Dimension;
 import java.awt.event.ItemEvent;
 
@@ -34,6 +38,9 @@ public class PDV extends javax.swing.JFrame {
     public PDV() {
         initComponents();
         setLocationRelativeTo(null);
+
+        ImageIcon icon = new ImageIcon("src/img/icon.png");
+        this.setIconImage(icon.getImage());
 
         SpinnerNumberModel spinnerModel = new SpinnerNumberModel(0, 0, 100, 1);
         jSpinnerQuantidade.setModel(spinnerModel);
@@ -54,6 +61,7 @@ public class PDV extends javax.swing.JFrame {
         }
     }
 
+    // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
@@ -88,6 +96,11 @@ public class PDV extends javax.swing.JFrame {
         });
 
         btnConfirmar.setText("Confirmar");
+        btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfirmarActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Valor Total");
 
@@ -114,6 +127,10 @@ public class PDV extends javax.swing.JFrame {
             }
         });
 
+        jSpinnerQuantidade.setMaximumSize(new java.awt.Dimension(70, 22));
+        jSpinnerQuantidade.setMinimumSize(new java.awt.Dimension(70, 22));
+        jSpinnerQuantidade.setName(""); // NOI18N
+        jSpinnerQuantidade.setPreferredSize(new java.awt.Dimension(70, 22));
         jSpinnerQuantidade.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jSpinnerQuantidadeStateChanged(evt);
@@ -135,49 +152,45 @@ public class PDV extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(150, 150, 150)
-                .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(btnConfirmar, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
-                .addGap(150, 150, 150))
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(245, 245, 245)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addGap(266, 266, 266))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(50, 50, 50)
+                .addGap(53, 53, 53)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jSpinnerQuantidade, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton3)
-                        .addGap(182, 182, 182))
+                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(34, 34, 34)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(200, 200, 200))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(labelValorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(275, 275, 275))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(178, 178, 178)
+                                .addComponent(jLabel5)
+                                .addGap(36, 36, 36)
+                                .addComponent(jLabel6)
+                                .addGap(71, 71, 71))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel4))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jSpinnerQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(comboBoxProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(30, 30, 30)
-                                .addComponent(labelValorUnitario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(0, 0, 0)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(15, 15, 15)
-                                .addComponent(labelValorTotalProduto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(23, 23, 23))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(219, 219, 219)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(labelValorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(comboBoxProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(61, 61, 61)
+                        .addComponent(labelValorUnitario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(69, 69, 69)
+                        .addComponent(labelValorTotalProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(50, 50, 50))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -191,45 +204,93 @@ public class PDV extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jSpinnerQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comboBoxProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelValorUnitario)
-                    .addComponent(labelValorTotalProduto))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelValorUnitario, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jSpinnerQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(comboBoxProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(labelValorTotalProduto)))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelValorTotal)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnConfirmar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnCancelar)
+                    .addComponent(btnConfirmar))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnConfirmarActionPerformed
+        if (valorTotalAcumulado > 0) {
+            int confirm = JOptionPane.showConfirmDialog(null, "Confirmar venda?", "Confirmação",
+                    JOptionPane.YES_NO_OPTION);
+            if (confirm == JOptionPane.YES_OPTION) {
+                Venda venda = new Venda();
+                venda.setDataVenda(new java.sql.Timestamp(new java.util.Date().getTime()));
+                venda.setValorTotal(valorTotalAcumulado);
+
+                List<Produto> produtos = new ArrayList<>();
+                for (JPanel productLines : productLines) {
+                    for (Component component : productLines.getComponents()) {
+                        if (component instanceof JComboBox<?>) {
+                            JComboBox<?> comboBox = (JComboBox<?>) component;
+                            Object selectedItem = comboBox.getSelectedItem();
+                            if (selectedItem instanceof Produto) {
+                                Produto produto = (Produto) selectedItem;
+                                produtos.add(produto);
+                            }
+                        }
+                    }
+                }
+
+                Produto produtoSelecionado = (Produto) comboBoxProdutos.getSelectedItem();
+                if (produtoSelecionado != null) {
+                    produtos.add(produtoSelecionado);
+                }
+
+                venda.setProdutos(produtos);
+
+                try {
+                    VendaDAO vendaDAO = VendaDAO.getInstance();
+                    vendaDAO.salvarVenda(venda);
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Erro ao salvar a venda.", "Erro", JOptionPane.ERROR_MESSAGE);
+                }
+
+                valorTotalAcumulado = 0.0;
+
+                productLines.clear();
+                valorTotalPorLinha.clear();
+                jSpinnerQuantidade.setValue(0);
+                comboBoxProdutos.setSelectedItem(null);
+                labelValorUnitario.setText("0,00");
+                labelValorTotalProduto.setText("0,00");
+                labelValorTotal.setText("0,00");
+                jPanel1.removeAll();
+                jPanel1.revalidate();
+                jPanel1.repaint();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Nenhum produto foi selecionado para a venda.", "Erro",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }// GEN-LAST:event_btnConfirmarActionPerformed
+
     private void jSpinnerQuantidadeStateChanged(javax.swing.event.ChangeEvent evt) {// GEN-FIRST:event_jSpinnerQuantidadeStateChanged
         updateTotalValues(jSpinnerQuantidade);
-
-        /*
-         * int quantidade = (int) jSpinnerQuantidade.getValue();
-         * Produto produtoSelecionado = (Produto) comboBoxProdutos.getSelectedItem();
-         * 
-         * if (produtoSelecionado != null) {
-         * double valorTotal = quantidade * produtoSelecionado.getPreco();
-         * labelValorTotalProduto.setText(String.format("%.2f", valorTotal));
-         * } // GEN-LAST:event_jSpinnerQuantidadeStateChanged
-         */
-    }
+    }// GEN-LAST:event_jSpinnerQuantidadeStateChanged
 
     private void comboBoxProdutosActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_comboBoxProdutosActionPerformed
         Produto selectedProduct = (Produto) comboBoxProdutos.getSelectedItem();
+        DecimalFormat df = new DecimalFormat("#,##0.00");
         if (selectedProduct != null) {
-            labelValorUnitario.setText(String.valueOf(selectedProduct.getPreco()));
+            labelValorUnitario.setText(df.format(selectedProduct.getPreco()));
         } else {
             labelValorUnitario.setText("0,00");
         }
@@ -243,79 +304,93 @@ public class PDV extends javax.swing.JFrame {
             comboBoxProdutos.setSelectedItem(null);
             labelValorUnitario.setText("0,00");
             labelValorTotalProduto.setText("0,00");
+            labelValorTotal.setText("0,00");
 
             jPanel1.removeAll();
             jPanel1.revalidate();
             jPanel1.repaint();
         }
-
     }// GEN-LAST:event_btnCancelarActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton3ActionPerformed
         JPanel productLine = new JPanel();
-
-        productLine.add(Box.createRigidArea(new Dimension(23, 6)));
-        JSpinner jSpinnerQuantidade = new JSpinner(new SpinnerNumberModel(0, 0, 100, 1));
-        productLine.add(jSpinnerQuantidade);
-        productLine.add(Box.createRigidArea(new Dimension(5, 6)));
-
+    
+        JSpinner jSpinnerQuantidade = new JSpinner();
+        jSpinnerQuantidade.setPreferredSize(new Dimension(70, 22));
         JComboBox<Produto> comboBoxProdutos = createProductComboBox();
-        Dimension size = new Dimension(175, 22);
-        comboBoxProdutos.setMinimumSize(size);
-        comboBoxProdutos.setMaximumSize(size);
-        comboBoxProdutos.setPreferredSize(size);
-        productLine.add(comboBoxProdutos);
-        productLine.add(Box.createRigidArea(new Dimension(30,6)));
-
         JLabel labelValorUnitario = new JLabel("0,00");
-        labelValorUnitario.setPreferredSize(new Dimension(67, labelValorUnitario.getPreferredSize().height));
-        productLine.add(labelValorUnitario);
-        //productLine.add(Box.createRigidArea(new Dimension(15, 6)));
-
         JLabel labelValorTotalProduto = new JLabel("0,00");
-        labelValorTotalProduto.setPreferredSize(new Dimension(65, labelValorTotalProduto.getPreferredSize().height));
-        productLine.add(labelValorTotalProduto);
-        //productLine.add(Box.createRigidArea(new Dimension(23, 6)));
-
-        // productLine.setBorder(new EmptyBorder(10, 10, 10, 10));
-
+    
+        comboBoxProdutos.setPreferredSize(new java.awt.Dimension(209, 22));
+        comboBoxProdutos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBoxProdutosActionPerformed(evt);
+            }
+        });
+    
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(productLine);
+        productLine.setLayout(layout);
+        layout.setHorizontalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(53, 53, 53)
+                                .addComponent(jSpinnerQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(26, 26, 26)
+                                .addComponent(comboBoxProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 209,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(61, 61, 61)
+                                .addComponent(labelValorUnitario, javax.swing.GroupLayout.PREFERRED_SIZE, 40,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(69, 69, 69)
+                                .addComponent(labelValorTotalProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 60,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(50, 50, 50)));
+        layout.setVerticalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jSpinnerQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 22,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(comboBoxProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 22,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(labelValorUnitario)
+                                        .addComponent(labelValorTotalProduto))
+                                .addGap(26, 26, 26)));
+    
         comboBoxProdutos.addItemListener((ItemEvent arg0) -> {
             Produto selectedProduct = (Produto) comboBoxProdutos.getSelectedItem();
-            labelValorUnitario.setText(String.valueOf(selectedProduct.getPreco()));
+            DecimalFormat df = new DecimalFormat("#,##0.00");
+            labelValorUnitario.setText(df.format(selectedProduct.getPreco()));
         });
-
+    
         jSpinnerQuantidade.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent evt) {
-                /*
-                 * JSpinner sourceSpinner = (JSpinner) evt.getSource();
-                 * updateTotalValues(sourceSpinner);
-                 */
-
                 JSpinner spinner = (JSpinner) evt.getSource();
                 int quantidade = (int) spinner.getValue();
                 Produto produtoSelecionado = (Produto) comboBoxProdutos.getSelectedItem();
-
+    
                 if (produtoSelecionado != null) {
                     double valorTotalProduto = quantidade * produtoSelecionado.getPreco();
-
+    
                     Double valorTotalAnterior = valorTotalPorLinha.get(spinner);
                     if (valorTotalAnterior != null) {
                         valorTotalAcumulado -= valorTotalAnterior;
                     }
-
+    
                     valorTotalAcumulado += valorTotalProduto;
-
+    
                     valorTotalPorLinha.put(spinner, valorTotalProduto);
-
+    
                     labelValorTotalProduto.setText(String.format("%.2f", valorTotalProduto));
                     labelValorTotal.setText(String.format("%.2f", valorTotalAcumulado));
                 }
             }
         });
-
-        jPanel1.add(productLine, 0);
-        productLine.revalidate();
-        productLine.repaint();
+    
+        jPanel1.add(productLine);
+        jPanel1.revalidate();
+        jPanel1.repaint();
         productLines.add(productLine);
     }// GEN-LAST:event_jButton3ActionPerformed
 
@@ -323,7 +398,7 @@ public class PDV extends javax.swing.JFrame {
         JComboBox<Produto> comboBoxProdutos = new JComboBox<Produto>();
         comboBoxProdutos.setRenderer(new ProdutoRenderer());
 
-        ProdutoDAO produtoDAO = new ProdutoDAO();
+        ProdutoDAO produtoDAO = ProdutoDAO.getInstance();
         List<Produto> produtos = produtoDAO.obterProdutos();
         Produto[] produtosArray = produtos.toArray(new Produto[0]);
         ComboBoxModel<Produto> model = new DefaultComboBoxModel<Produto>(produtosArray);
